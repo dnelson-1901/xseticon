@@ -208,7 +208,7 @@ void abortprog(gchar* fname)
  *  not necessarily a 32bit one.
  */
 
-void load_icon(gchar* filename, int* ndata, CARD32** data)
+void load_icon(gchar* filename, guint* ndata, CARD32** data)
 {
   FILE* iconfile = fopen(filename, "r");
 
@@ -323,7 +323,7 @@ int main(int argc, char* argv[])
   load_icon(argv[argindex], &nelements, &data);
 
   int result = XChangeProperty(display, window, property, XA_CARDINAL, 32, PropModeReplace, 
-      (gchar*)data, nelements);
+      (unsigned char *)data, nelements);
 
   if(!result)
     abortprog("XChangeProperty");
