@@ -284,12 +284,12 @@ int main(int argc, char* argv[])
 
   Display* display = XOpenDisplay(NULL);
 
+  if (!display)
+    abortprog("XOpenDisplay");
+
   XSynchronize(display, TRUE);
 
   int screen = DefaultScreen(display);
-  
-  if (!display)
-    abortprog("XOpenDisplay");
 
   Window window = Select_Window_Args(display, screen, &(argc), argv);
 
